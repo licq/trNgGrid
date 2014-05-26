@@ -441,7 +441,7 @@ var TrNgGrid;
                 restrict: 'A',
                 replace: true,
                 template: function (templateElement, tAttrs) {
-                    return "<div ng-show='currentGridColumnDef.enableSorting' ng-click='toggleSorting(currentGridColumnDef.fieldName)' title='Sort' class='" + sortCssClass + "'>" + "<div " + "ng-class=\"{'" + sortActiveCssClass + "':gridOptions.orderBy==currentGridColumnDef.fieldName,'" + sortInactiveCssClass + "':gridOptions.orderBy!=currentGridColumnDef.fieldName,'" + sortReverseCssClass + "':gridOptions.orderByReverse}\" " + " >" + "</div>" + "</div>";
+                    return "<div ng-show='currentGridColumnDef.enableSorting' ng-click='toggleSorting(currentGridColumnDef.fieldName)' title='排序' class='" + sortCssClass + "'>" + "<div " + "ng-class=\"{'" + sortActiveCssClass + "':gridOptions.orderBy==currentGridColumnDef.fieldName,'" + sortInactiveCssClass + "':gridOptions.orderBy!=currentGridColumnDef.fieldName,'" + sortReverseCssClass + "':gridOptions.orderByReverse}\" " + " >" + "</div>" + "</div>";
                 }
             };
         }
@@ -606,7 +606,7 @@ var TrNgGrid;
                 scope: true,
                 require: '^' + tableDirective,
                 template: function (templateElement, tAttrs) {
-                    return '<span ng-show="gridOptions.enableFiltering" class="pull-left form-group">' + '<input class="form-control" type="text" ng-model="gridOptions.filterBy" placeholder="Search"/>' + '</span>';
+                    return '<span ng-show="gridOptions.enableFiltering" class="pull-left form-group">' + '<input class="form-control" type="text" ng-model="gridOptions.filterBy" placeholder="搜索"/>' + '</span>';
                 },
                 compile: function (templateElement, tAttrs) {
                     //templateElement.attr("ng-show", "gridOptions.enableFiltering");
@@ -657,7 +657,7 @@ var TrNgGrid;
                 scope: true,
                 require: '^' + tableDirective,
                 template: function (templateElement, tAttrs) {
-                    return '<span class="pull-right form-group">' + '<ul class="pagination">' + '<li>' + '<a href="#" ng-show="pageCanGoBack" ng-click="navigatePrevPage($event)" title="Previous Page">&lArr;</a>' + '</li>' + '<li class="disabled" style="white-space: nowrap;">' + '<span ng-hide="totalItemsCount">No items to display</span>' + '<span ng-show="totalItemsCount">' + '  {{startItemIndex+1}} - {{endItemIndex+1}} displayed' + '<span>, {{totalItemsCount}} in total</span>' + '</span>' + '</li>' + '<li>' + '<a href="#" ng-show="pageCanGoForward" ng-click="navigateNextPage($event)" title="Next Page">&rArr;</a>' + '<li>' + '</ul>' + '</span>';
+                    return '<span class="pull-right form-group">' + '<ul class="pagination">' + '<li>' + '<a href="#" ng-show="pageCanGoBack" ng-click="navigatePrevPage($event)" title="上一页">&lArr;</a>' + '</li>' + '<li class="disabled" style="white-space: nowrap;">' + '<span ng-hide="totalItemsCount">没有可以显示的项</span>' + '<span ng-show="totalItemsCount">' + '  显示{{startItemIndex+1}} - {{endItemIndex+1}}' + '<span>, 总计{{totalItemsCount}}</span>' + '</span>' + '</li>' + '<li>' + '<a href="#" ng-show="pageCanGoForward" ng-click="navigateNextPage($event)" title="下一页">&rArr;</a>' + '<li>' + '</ul>' + '</span>';
                 },
                 replace: true,
                 link: {
