@@ -66,7 +66,7 @@ var TrNgGrid;
                 orderBy: null,
                 orderByReverse: false,
                 pageItems: null,
-                currentPage: 0,
+                currentPage: 1,
                 totalItems: null,
                 enableFiltering: true,
                 enableSorting: true,
@@ -467,15 +467,15 @@ var TrNgGrid;
                 return input;
 
             if (!gridOptions.currentPage) {
-                gridOptions.currentPage = 0;
+                gridOptions.currentPage = 1;
             }
 
-            var startIndex = gridOptions.currentPage * gridOptions.pageItems;
+            var startIndex = (gridOptions.currentPage -1) * gridOptions.pageItems;
             if (startIndex >= input.length) {
-                gridOptions.currentPage = 0;
+                gridOptions.currentPage = 1;
                 startIndex = 0;
             }
-            var endIndex = gridOptions.currentPage * gridOptions.pageItems + gridOptions.pageItems;
+            var endIndex = (gridOptions.currentPage - 1) * gridOptions.pageItems + gridOptions.pageItems;
 
             /*              Update: Not called for server-side paging
             if(startIndex>=input.length){
@@ -629,7 +629,7 @@ var TrNgGrid;
                 // do not set scope.gridOptions.totalItems, it might be set from the outside
                 scope.totalItemsCount = (typeof (scope.gridOptions.totalItems) != "undefined" && scope.gridOptions.totalItems != null) ? scope.gridOptions.totalItems : (scope.gridOptions.items ? scope.gridOptions.items.length : 0);
 
-                scope.startItemIndex = scope.isPaged ? (scope.gridOptions.pageItems * scope.gridOptions.currentPage) : 0;
+                scope.startItemIndex = scope.isPaged ? (scope.gridOptions.pageItems * (scope.gridOptions.currentPage - 1)) : 0;
                 scope.endItemIndex = scope.isPaged ? (scope.startItemIndex + scope.gridOptions.pageItems - 1) : scope.totalItemsCount - 1;
                 if (scope.endItemIndex >= scope.totalItemsCount) {
                     scope.endItemIndex = scope.totalItemsCount - 1;
@@ -638,7 +638,7 @@ var TrNgGrid;
                     scope.endItemIndex = scope.startItemIndex;
                 }
 
-                scope.pageCanGoBack = scope.isPaged && scope.gridOptions.currentPage > 0;
+                scope.pageCanGoBack = scope.isPaged && scope.gridOptions.currentPage > 1;
                 scope.pageCanGoForward = scope.isPaged && scope.endItemIndex < scope.totalItemsCount - 1;
                 scope.navigateNextPage = function ($event) {
                     scope.gridOptions.currentPage = scope.gridOptions.currentPage + 1;
